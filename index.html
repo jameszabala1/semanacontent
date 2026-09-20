@@ -1,406 +1,335 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7YP47K5V9V"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-7YP47K5V9V');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Tu semana de contenido, lista en 5 minutos</title>
+<title>De la hoja en blanco al post publicado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- ========== GA4 (reemplaza G-XXXXXXX por tu Measurement ID) ========== -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXX');
-</script>
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg: #1B1035;
-    --bg-panel: #251441;
-    --ink: #F5F1FF;
-    --ink-muted: #B7A6DA;
-    --accent: #FFD23F;
-    --accent-2: #FF6B4A;
-    --line: rgba(245,241,255,0.14);
-    --radius: 10px;
+  :root {
+    --bg: #F7F4EC;
+    --bg-card: #F1ECDF;
+    --ink: #1C1B17;
+    --ink-soft: #55534A;
+    --ink-faint: #8B8878;
+    --accent: #0F5C4F;
+    --accent-ink: #F7F4EC;
+    --line: #D9D3C0;
+    --font-display: 'Fraunces', serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
     box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
-  *{ box-sizing: inherit; }
-  html{ scroll-padding-top: env(safe-area-inset-top, 0px); }
-  html,body{ height: 100%; }
-  body{
-    margin:0;
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17190E;
+      --bg-card: #1F2216;
+      --ink: #EFEBDD;
+      --ink-soft: #B7B3A0;
+      --ink-faint: #7A7767;
+      --accent: #6FD3B8;
+      --accent-ink: #0E1A12;
+      --line: #2D3020;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17190E;
+    --bg-card: #1F2216;
+    --ink: #EFEBDD;
+    --ink-soft: #B7B3A0;
+    --ink-faint: #7A7767;
+    --accent: #6FD3B8;
+    --accent-ink: #0E1A12;
+    --line: #2D3020;
+  }
+  * { box-sizing: border-box; }
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+  }
+  body {
+    margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    line-height: 1.55;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3{
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-    font-weight: 600;
-    line-height: 1.12;
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
-  a{ color: inherit; }
-  .wrap{
-    max-width: 1080px;
+  .wrap {
+    max-width: 720px;
     margin: 0 auto;
     padding: 0 28px;
   }
-  header.nav{
-    padding: 28px 0 0;
+  header.top {
+    padding: 28px 0 8px;
   }
-  header.nav .wrap{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+  .brand {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
   }
-  .logo{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:700;
-    font-size: 1.05rem;
+  .hero {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(32px, 6vw, 48px);
+    line-height: 1.12;
     letter-spacing: -0.01em;
+    margin: 0 0 22px;
+    max-width: 15ch;
   }
-  .logo span{ color: var(--accent); }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    padding: 64px 0 40px;
-  }
-  .hero .wrap{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 56px;
-    align-items:center;
-  }
-  .hero h1{
-    font-size: clamp(2.1rem, 4.4vw, 3.4rem);
-    max-width: 14ch;
-  }
-  .hero p.sub{
+  .lede {
+    font-size: 18px;
+    color: var(--ink-soft);
     max-width: 46ch;
-    color: var(--ink-muted);
-    font-size: 1.08rem;
-    margin: 22px 0 30px;
+    margin: 0 0 32px;
   }
-  form.waitlist{
-    display:flex;
-    gap:10px;
-    max-width: 460px;
-    flex-wrap: wrap;
-  }
-  form.waitlist input[type="email"]{
-    flex: 1 1 240px;
-    padding: 14px 16px;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: var(--bg-panel);
-    color: var(--ink);
-    font-size: 1rem;
-    font-family: inherit;
-    outline: none;
-    min-width: 0;
-  }
-  form.waitlist input[type="email"]::placeholder{ color: var(--ink-muted); }
-  form.waitlist input[type="email"]:focus-visible{
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(255,210,63,0.25);
-  }
-  form.waitlist button{
-    padding: 14px 22px;
-    border-radius: var(--radius);
-    border: none;
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     background: var(--accent);
-    color: #241505;
+    color: var(--accent-ink);
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 1rem;
-    font-family: inherit;
+    font-size: 16px;
+    padding: 15px 26px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
     cursor: pointer;
-    transition: transform 0.15s ease, background 0.15s ease;
-    white-space: nowrap;
+    transition: transform 0.15s ease, opacity 0.15s ease;
   }
-  form.waitlist button:hover{ background: #ffdc66; }
-  form.waitlist button:active{ transform: scale(0.97); }
-  form.waitlist button:focus-visible{ outline: 3px solid var(--accent-2); outline-offset: 2px; }
-  form.waitlist button:disabled{ opacity: 0.6; cursor: default; }
-
-  .micro{
-    margin-top: 12px;
-    font-size: 0.85rem;
-    color: var(--ink-muted);
-  }
-  .form-status{
-    margin-top: 12px;
-    font-size: 0.92rem;
-    min-height: 1.2em;
-  }
-  .form-status.ok{ color: #8CE99A; }
-  .form-status.err{ color: var(--accent-2); }
-
-  /* ---------- WEEK STRIP (motivo visual: una semana llenandose de contenido) ---------- */
-  .week-strip{
-    display:flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .day-row{
-    display:flex;
-    align-items:center;
-    gap: 14px;
-  }
-  .day-label{
-    width: 22px;
-    font-family:'Space Grotesk', sans-serif;
-    font-size: 0.8rem;
-    color: var(--ink-muted);
-    flex-shrink:0;
-  }
-  .day-bar{
-    height: 20px;
-    flex: 1;
-    border-radius: 6px;
-    background: var(--bg-panel);
-    border: 1px solid var(--line);
-    overflow: hidden;
-  }
-  .day-bar span{
-    display:block;
-    height:100%;
-    width:0%;
-    border-radius: 6px;
-    background: linear-gradient(90deg, var(--accent-2), var(--accent));
-    animation: fillDay 0.9s ease forwards;
-  }
-  .day-row:nth-child(1) .day-bar span{ animation-delay: 0.15s; width: 92%; }
-  .day-row:nth-child(2) .day-bar span{ animation-delay: 0.32s; width: 78%; }
-  .day-row:nth-child(3) .day-bar span{ animation-delay: 0.49s; width: 88%; }
-  .day-row:nth-child(4) .day-bar span{ animation-delay: 0.66s; width: 70%; }
-  .day-row:nth-child(5) .day-bar span{ animation-delay: 0.83s; width: 95%; }
-  .day-row:nth-child(6) .day-bar span{ animation-delay: 1.00s; width: 60%; }
-  .day-row:nth-child(7) .day-bar span{ animation-delay: 1.17s; width: 82%; }
-  @keyframes fillDay{ from{ width:0% !important; } }
-  @media (prefers-reduced-motion: reduce){
-    .day-bar span{ animation: none !important; width: var(--w, 80%) !important; }
+  .cta:hover { opacity: 0.88; }
+  .cta:active { transform: scale(0.98); }
+  .cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  .cta-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--ink-faint);
   }
 
-  /* ---------- HOW ---------- */
-  .how{
-    padding: 30px 0 64px;
+  .pains {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 560px) {
+    .pains { grid-template-columns: 1fr; }
+  }
+  .pain h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0 0 8px;
+  }
+  .pain p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .steps {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .steps h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 26px;
+    margin: 0 0 32px;
+  }
+  .step {
+    display: flex;
+    gap: 20px;
+    padding: 18px 0;
     border-top: 1px solid var(--line);
-    margin-top: 40px;
   }
-  .how .wrap{
-    padding-top: 56px;
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 36px;
+  .step:first-of-type { border-top: none; padding-top: 0; }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 15px;
+    color: var(--ink-faint);
+    min-width: 24px;
+    padding-top: 2px;
   }
-  .how h3{ font-size: 1.15rem; margin-bottom: 10px; }
-  .how p{ color: var(--ink-muted); font-size: 0.98rem; margin:0; }
+  .step-body h4 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .step-body p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
 
-  /* ---------- CTA REPEAT ---------- */
-  .cta-block{
-    padding: 64px 0 84px;
+  .proof {
+    padding: 52px 0;
+    border-bottom: 1px solid var(--line);
   }
-  .cta-block .panel{
-    background: var(--bg-panel);
+  .proof h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 26px;
+    margin: 0 0 28px;
+  }
+  .draft-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  @media (max-width: 560px) {
+    .draft-pair { grid-template-columns: 1fr; }
+  }
+  .draft-card {
+    background: var(--bg-card);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 48px;
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 30px;
-    align-items:center;
+    border-radius: 4px;
+    padding: 20px;
   }
-  .cta-block h2{ font-size: 1.7rem; max-width: 16ch; }
-  .cta-block .panel p{ color: var(--ink-muted); margin: 12px 0 24px; max-width: 42ch; }
+  .draft-label {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin: 0 0 12px;
+  }
+  .draft-empty {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-faint);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-size: 15px;
+    text-align: center;
+  }
+  .draft-text {
+    font-size: 14px;
+    color: var(--ink);
+    white-space: pre-line;
+  }
 
-  footer{
+  .final {
+    padding: 56px 0 72px;
+    text-align: left;
+  }
+  .final h2 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 28px;
+    margin: 0 0 16px;
+    max-width: 22ch;
+  }
+  .final p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+    max-width: 46ch;
+  }
+
+  footer {
+    padding: 24px 0 40px;
     border-top: 1px solid var(--line);
-    padding: 26px 0 calc(26px + env(safe-area-inset-bottom, 0px));
-    color: var(--ink-muted);
-    font-size: 0.85rem;
+    font-size: 13px;
+    color: var(--ink-faint);
   }
-  footer .wrap{
-    display:flex;
-    justify-content:space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  @media (max-width: 860px){
-    .hero .wrap, .cta-block .panel, .how .wrap{
-      grid-template-columns: 1fr;
-    }
-    .cta-block .panel{ padding: 32px; }
-    .week-strip{ order: -1; margin-bottom: 8px; }
-  }
-
-  .container-scroll{ overflow-x: auto; }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header class="nav">
-  <div class="wrap">
-    <div class="logo">semana<span>.</span></div>
-  </div>
-</header>
+  <header class="top">
+    <div class="brand">de cero a publicado</div>
+  </header>
 
-<main>
   <section class="hero">
-    <div class="wrap">
-      <div class="hero-copy">
-        <h1>Tu semana de contenido, lista en 5 minutos.</h1>
-        <p class="sub">Dinos tu tema y tu tono. Te devolvemos 7 días de posts listos para publicar en tus redes, sin abrir un editor ni mirar la página en blanco.</p>
+    <h1>Sabes que deberías publicar. El problema no es la disciplina.</h1>
+    <p class="lede">Es que no sabés qué contar, y cuando lo sabés te da pereza sentarte a escribirlo. Respondé 4 preguntas y te mando una semana de ideas más 2-3 posts ya redactados en tu tono, listos para copiar y pegar.</p>
+    <a class="cta" href="#" id="cta-link">Quiero mi semana de contenido</a>
+    <p class="cta-note">4 preguntas · respuesta en 24-48h · gratis</p>
+  </section>
 
-        <form class="waitlist" id="form-hero" novalidate>
-          <input type="email" name="email" placeholder="tucorreo@ejemplo.com" required aria-label="Tu correo">
-          <button type="submit">Quiero acceso</button>
-        </form>
-        <p class="form-status" id="status-hero" aria-live="polite"></p>
-        <p class="micro">Sin spam. Te avisamos en cuanto abramos tu acceso.</p>
+  <section class="pains">
+    <div class="pain">
+      <h3>Bloqueo de ideas</h3>
+      <p>Te sentás a pensar qué publicar y no sale nada. O sale lo mismo de siempre. El problema no es de talento, es de no tener un sistema.</p>
+    </div>
+    <div class="pain">
+      <h3>Fricción para ejecutar</h3>
+      <p>Incluso cuando tenés la idea, escribirla y pulirla te da pereza o vergüenza. Entre la idea y publicar se pierde el impulso.</p>
+    </div>
+  </section>
+
+  <section class="steps">
+    <h2>Cómo funciona</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>Contame de tu negocio</h4>
+        <p>A qué te dedicás, de qué querés hablar, tu tono y una cuenta que admirás. Cuatro preguntas, dos minutos.</p>
       </div>
-
-      <div class="week-strip" aria-hidden="true">
-        <div class="day-row"><span class="day-label">L</span><div class="day-bar"><span></span></div></div>
-        <div class="day-row"><span class="day-label">M</span><div class="day-bar"><span></span></div></div>
-        <div class="day-row"><span class="day-label">X</span><div class="day-bar"><span></span></div></div>
-        <div class="day-row"><span class="day-label">J</span><div class="day-bar"><span></span></div></div>
-        <div class="day-row"><span class="day-label">V</span><div class="day-bar"><span></span></div></div>
-        <div class="day-row"><span class="day-label">S</span><div class="day-bar"><span></span></div></div>
-        <div class="day-row"><span class="day-label">D</span><div class="day-bar"><span></span></div></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>Recibís tu contenido</h4>
+        <p>Te mando por correo o WhatsApp una semana de ideas y 2-3 posts ya redactados en tu tono.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>Editás lo mínimo y publicás</h4>
+        <p>Ajustá un detalle si querés y subilo hoy mismo. La parte difícil ya está hecha.</p>
       </div>
     </div>
   </section>
 
-  <section class="how">
-    <div class="wrap">
-      <div>
-        <h3>Cuéntanos tu tema</h3>
-        <p>Una frase basta: a qué te dedicas, para quién publicas y qué quieres lograr esta semana.</p>
+  <section class="proof">
+    <h2>Así se ve la diferencia</h2>
+    <div class="draft-pair">
+      <div class="draft-card">
+        <p class="draft-label">Sin ayuda</p>
+        <div class="draft-empty">"¿Y hoy qué publico?"</div>
       </div>
-      <div>
-        <h3>Elegimos tu tono</h3>
-        <p>Cercano, experto, divertido o directo — el contenido suena a ti, no a una plantilla genérica.</p>
-      </div>
-      <div>
-        <h3>Recibe tus 7 días</h3>
-        <p>Posts, captions e ideas de formato listos para copiar y publicar en el orden que prefieras.</p>
+      <div class="draft-card">
+        <p class="draft-label">Con tu post redactado</p>
+        <div class="draft-text">Nadie te enseñó a cobrar lo que valés.
+
+Te enseñaron a trabajar duro y esperar que se note. Pero el mercado no premia el esfuerzo, premia el valor percibido.
+
+¿Qué hiciste esta semana que tu cliente ni se imagina el trabajo que llevó?</div>
       </div>
     </div>
   </section>
 
-  <section class="cta-block">
-    <div class="wrap">
-      <div class="panel">
-        <div>
-          <h2>Deja de improvisar tus redes cada domingo.</h2>
-          <p>Únete a la lista de espera y sé de los primeros en probarlo cuando abramos el acceso.</p>
-          <form class="waitlist" id="form-footer" novalidate>
-            <input type="email" name="email" placeholder="tucorreo@ejemplo.com" required aria-label="Tu correo">
-            <button type="submit">Quiero acceso</button>
-          </form>
-          <p class="form-status" id="status-footer" aria-live="polite"></p>
-        </div>
-      </div>
-    </div>
+  <section class="final">
+    <h2>Publicá hoy, no cuando se te ocurra qué decir</h2>
+    <p>Sin plantillas genéricas. Ideas y textos pensados para tu negocio y tu forma de hablar.</p>
+    <a class="cta" href="#" id="cta-link-2">Quiero mi semana de contenido</a>
   </section>
-</main>
 
-<footer>
-  <div class="wrap">
-    <span>semana — hecho por ti</span>
-    <span>&copy; 2026</span>
-  </div>
-</footer>
+  <footer>
+    Un servicio hecho a mano, no una app. Te respondo yo directamente.
+  </footer>
 
-<!-- ========== Supabase (reemplaza URL y ANON_KEY por los de tu proyecto) ========== -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</div>
+
 <script>
-  const SUPABASE_URL = "https://REEMPLAZA-TU-PROYECTO.supabase.co";
-  const SUPABASE_ANON_KEY = "REEMPLAZA-TU-ANON-KEY";
-  const supabaseClient = window.supabase
-    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-    : null;
-
-  const STORAGE_KEY = "semana_waitlist_submitted";
-
-  function setStatus(el, msg, type){
-    el.textContent = msg;
-    el.className = "form-status" + (type ? " " + type : "");
-  }
-
-  function alreadySubmitted(){
-    try{ return localStorage.getItem(STORAGE_KEY) === "1"; }
-    catch(e){ return false; }
-  }
-
-  function markSubmitted(){
-    try{ localStorage.setItem(STORAGE_KEY, "1"); }
-    catch(e){ /* localStorage no disponible, seguimos sin bloquear el flujo */ }
-  }
-
-  async function handleSubmit(e){
-    e.preventDefault();
-    const form = e.target;
-    const statusEl = form.parentElement.querySelector(".form-status");
-    const button = form.querySelector("button");
-    const email = form.querySelector("input[type=email]").value.trim();
-
-    if(!email){ return; }
-
-    if(alreadySubmitted()){
-      setStatus(statusEl, "Ya estás en la lista de espera. ¡Gracias!", "ok");
-      return;
-    }
-
-    button.disabled = true;
-    setStatus(statusEl, "Enviando...", "");
-
-    try{
-      if(!supabaseClient){ throw new Error("Backend no configurado"); }
-
-      const { error } = await supabaseClient
-        .from("waitlist")
-        .insert([{ email: email }]);
-
-      if(error) throw error;
-
-      markSubmitted();
-      setStatus(statusEl, "¡Listo! Te avisamos por correo en cuanto abramos.", "ok");
-      form.reset();
-
-      if(window.gtag){
-        gtag('event', 'waitlist_signup', { method: 'form' });
-      }
-    }catch(err){
-      console.error(err);
-      setStatus(statusEl, "Hubo un problema. Intenta de nuevo en unos segundos.", "err");
-    }finally{
-      button.disabled = false;
-    }
-  }
-
-  document.getElementById("form-hero").addEventListener("submit", handleSubmit);
-  document.getElementById("form-footer").addEventListener("submit", handleSubmit);
+  // Reemplaza esta URL por el link real de tu Google Form
+  const FORM_URL = "https://forms.google.com/tu-formulario-aqui";
+  document.querySelectorAll('#cta-link, #cta-link-2').forEach(el => {
+    el.setAttribute('href', FORM_URL);
+  });
 </script>
 
 </body>
